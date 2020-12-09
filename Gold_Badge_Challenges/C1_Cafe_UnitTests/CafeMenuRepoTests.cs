@@ -14,14 +14,19 @@ namespace C1_Cafe_UnitTests
         [TestInitialize]
         public void SetUp()
         {
-            List<string> seedIngredients = new List<string>();
-            seedIngredients.Add("Beer");
-            seedIngredients.Add("Tenderloin");
-            seedIngredients.Add("Chicken Wings");
-            seedIngredients.Add("Pie");
+            List<string> seedIngredients = new List<string>
+            {
+                "Beer",
+                "Tenderloin",
+                "Chicken Wings",
+                "Pie"
+            };
 
             _menuRepo = new CafeMenuRepo();
             _menu = new CafeMenu(1, "The Big Plate", "Four course meal with drink", seedIngredients, 5.25m);
+
+            //_menu = new CafeMenu(1, "The Big Plate", "Four course meal with drink", new List<string> { "Beer", "Tenderloin", "Chicken Wings", "Pie" }, 5.25m);
+            // *** Line 28 is another way of seeding using the List<string> initializer within the constructor. Thanks Mitch!! 
 
             _menuRepo.AddMenuItemToList(_menu);
         }
@@ -30,13 +35,13 @@ namespace C1_Cafe_UnitTests
         public void AddToMenu_ShouldGetNotNull()
         {
             //Arrange
-            CafeMenu item = new CafeMenu();
-            item.MealNumber = 2;
+            CafeMenu item = new CafeMenu();            
             CafeMenuRepo repo = new CafeMenuRepo();
 
             //Act
             repo.AddMenuItemToList(item);
-            CafeMenu itemFromMenu = repo.GetMenuItemByNumber(2);
+            
+            CafeMenu itemFromMenu = _menuRepo.GetMenuItemByNumber(_menu.MealNumber);
 
             //Assert
             Assert.IsNotNull(itemFromMenu);

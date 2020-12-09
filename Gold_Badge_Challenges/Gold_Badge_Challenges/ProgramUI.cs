@@ -92,7 +92,7 @@ namespace C1_Cafe_Console
             }
 
             Console.Write(" Enter the price for this meal: ");
-            newMenuItem.MealPrice = Decimal.Parse(Console.ReadLine());
+            newMenuItem.MealPrice = decimal.Parse(Console.ReadLine());
 
             _menuItemsRepo.AddMenuItemToList(newMenuItem);
         }

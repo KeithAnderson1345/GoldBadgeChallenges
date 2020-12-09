@@ -13,12 +13,11 @@ namespace C1_Cafe_Repository
         public string MealDescription { get; set; }
         public List<string> MealIngredients { get; set; } = new List<string>();
         public decimal MealPrice { get; set; }
-
         public CafeMenu() { }
 
         public CafeMenu(int mealNumber, string mealName, string mealDescription, List<string> mealIngredients, decimal mealPrice)
         {
-            MealNumber = MealNumber;
+            MealNumber = mealNumber;
             MealName = mealName;
             MealDescription = mealDescription;
             MealIngredients = mealIngredients;
