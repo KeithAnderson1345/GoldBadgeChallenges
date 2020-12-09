@@ -1,0 +1,5 @@
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C2_Claims_Repository\bin\Debug\C2_Claims_Repository.dll
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C2_Claims_Repository\bin\Debug\C2_Claims_Repository.pdb
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C2_Claims_Repository\obj\Debug\C2_Claims_Repository.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C2_Claims_Repository\obj\Debug\C2_Claims_Repository.dll
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C2_Claims_Repository\obj\Debug\C2_Claims_Repository.pdb
