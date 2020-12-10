@@ -23,21 +23,14 @@ namespace C2_Claims_Repository
             return _queueOfClaims;
         }
 
-        //Update 
-
+        //Update
+        
 
         //Delete (remove from Queue)
-        public bool RemoveFromQueue(string claimID)
+        public void RemoveFromQueue()
         {
-            if (claimID != null)
-            {
-                _queueOfClaims.Dequeue();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            _queueOfClaims.Dequeue();
+            //return _queueOfClaims;
         }
 
         //Helper method by claimID
@@ -51,12 +44,6 @@ namespace C2_Claims_Repository
                 }
             }
             return null;
-        }
-
-        //Peek Method
-        public ClaimMenu PeekNextClaim()
-        {
-            return _queueOfClaims.Peek();
-        }
+        }       
     }
 }
