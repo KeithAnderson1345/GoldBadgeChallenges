@@ -1,0 +1,16 @@
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\C3_Badges_UnitTests.dll
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\C3_Badges_UnitTests.pdb
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\C3_Badges_Repository.dll
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\C3_Badges_Repository.pdb
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\obj\Debug\C3_Badges_UnitTests.csprojAssemblyReference.cache
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\obj\Debug\C3_Badges_UnitTests.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\obj\Debug\C3_Badges_UnitTests.csproj.CopyComplete
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\obj\Debug\C3_Badges_UnitTests.dll
+C:\ElevenFiftyProjects\SDDecemberProjects\Gold Badge Challenges\Gold_Badge_Challenges\C3_Badges_UnitTests\obj\Debug\C3_Badges_UnitTests.pdb

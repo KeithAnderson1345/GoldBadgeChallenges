@@ -8,7 +8,6 @@ namespace C2_Claims_Repository
 {
     public class ClaimMenuRepo
     {
-        //private List<ClaimMenu> _listOfClaims = new List<ClaimMenu>();
         private Queue<ClaimMenu> _queueOfClaims = new Queue<ClaimMenu>(); 
 
         //Create

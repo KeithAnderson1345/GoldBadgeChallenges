@@ -79,7 +79,7 @@ namespace C2_Claims_Console
             Console.WriteLine($" Description: {nextClaim.Description}");
             Console.WriteLine($" Claim amount: ${nextClaim.ClaimAmount}");
             Console.WriteLine($" Date of Accident: {nextClaim.DateOfIncident.Date.ToString("d")}");
-            Console.WriteLine($" Date of claim: {nextClaim.DateOfClaim.Date.ToString("d")}");
+            Console.WriteLine($" Date of claim: {nextClaim.DateOfClaim.Date:d}"); //Intellisense suggestion for code in line 81
 
             Console.Write("\n Would you like to handle this claim now? (y/n): " );
             string input = Console.ReadLine();
@@ -186,8 +186,7 @@ namespace C2_Claims_Console
                 valueAsString = valueAsString.Substring(1);
             }
 
-            decimal valueAsDecimal = decimal.Parse(valueAsString);
-            valueAsDecimal = Math.Round(valueAsDecimal, 2);
+            decimal valueAsDecimal = decimal.Parse(valueAsString);            
             return valueAsDecimal;
         }
 

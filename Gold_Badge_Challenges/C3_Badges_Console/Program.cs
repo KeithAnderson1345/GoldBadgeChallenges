@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace C3_Badges_Console
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            ProgramUI program = new ProgramUI();
+            program.Run();
         }
     }
 }

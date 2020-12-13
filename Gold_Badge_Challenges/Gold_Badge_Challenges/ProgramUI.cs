@@ -146,7 +146,8 @@ namespace C1_Cafe_Console
                         Console.Write($"{ingredient}\n");
                     }                    
                 }
-                Console.WriteLine($" Meal Price: ${items.MealPrice}\n");
+                //Console.WriteLine($" Meal Price: ${items.MealPrice}\n");
+                Console.WriteLine(" Meal Price: ${0:F2}\n", items.MealPrice);
             }
         }
     }
