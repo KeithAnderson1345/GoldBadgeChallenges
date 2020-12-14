@@ -76,10 +76,11 @@ namespace C1_Cafe_Console
             Console.Write(" Enter a description for the new meal: ");
             newMenuItem.MealDescription = Console.ReadLine();
 
-            Console.WriteLine("Enter an ingredient then press enter. Type 'end' when complete");
+            Console.WriteLine(" Enter an ingredient then press enter. Type 'end' when complete");
             bool input = true;
             while (input)
             {
+                Console.Write(" ");
                 string ingredient = Console.ReadLine().ToLower();
                 if (ingredient == "end")
                 {

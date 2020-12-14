@@ -140,17 +140,20 @@ namespace C2_Claims_Console
             var isValid = IsValid(newClaim.DateOfClaim, newClaim.DateOfIncident);
             if (isValid == true)
             {
-                newClaim.IsValid = true;                
+                newClaim.IsValid = true;
+                Console.WriteLine(" This claim is valid");
             }
             else
             {
-                newClaim.IsValid = false;                
+                newClaim.IsValid = false;
+                Console.WriteLine(" This claim is not valid");
             }
 
             _queueOfClaimsRepo.AddNewClaim(newClaim);
 
+            Console.WriteLine("\n Press any key to continue... ");
+            Console.ReadKey();
             Console.Clear();
-
         }
 
         //Claim Type conversion method
