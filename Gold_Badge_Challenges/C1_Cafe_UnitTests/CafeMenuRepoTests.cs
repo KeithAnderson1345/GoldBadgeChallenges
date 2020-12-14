@@ -35,16 +35,17 @@ namespace C1_Cafe_UnitTests
         public void AddToMenu_ShouldGetNotNull()
         {
             //Arrange
-            CafeMenu item = new CafeMenu();            
+            CafeMenu item = new CafeMenu();
+            item.MealNumber = 2;
             CafeMenuRepo repo = new CafeMenuRepo();
 
             //Act
             repo.AddMenuItemToList(item);
             
-            CafeMenu itemFromMenu = _menuRepo.GetMenuItemByNumber(_menu.MealNumber);
+            CafeMenu itemFromMenu = repo.GetMenuItemByNumber(item.MealNumber); //Verifies that the item.MealNumber was added to the menu
 
             //Assert
-            Assert.IsNotNull(itemFromMenu);
+            Assert.IsTrue(itemFromMenu.MealNumber == 2);
         }
 
         [TestMethod]
@@ -56,7 +57,7 @@ namespace C1_Cafe_UnitTests
             bool deleteMenuItem = _menuRepo.DeleteMenuItemFromList(_menu.MealNumber);
 
             //Assert
-            Assert.IsTrue(deleteMenuItem);
+            Assert.IsTrue(deleteMenuItem); //Verifites the menu item was deleted
 
         }
     }

@@ -96,7 +96,7 @@ namespace C3_Badges_Console
             Console.Write("\n Which badge number would you like to add doors to?: ");
 
             int badgeToAddDoors = int.Parse(Console.ReadLine());
-            Badges badgeToAdd = GetBadgesByID(badgeToAddDoors);
+            Badges badgeToAdd = GetListOfBadgesByID(badgeToAddDoors);
             if (_badgesRepo.GetBadgeByID(badgeToAddDoors) != 0)
             {
 
@@ -140,7 +140,7 @@ namespace C3_Badges_Console
             Console.Write("\n Which badge number would you like to delete doors from?: ");
 
             int badgeToDeleteDoors = int.Parse(Console.ReadLine());
-            Badges badgeToDelete = GetBadgesByID(badgeToDeleteDoors);
+            Badges badgeToDelete = GetListOfBadgesByID(badgeToDeleteDoors);
             if (_badgesRepo.GetBadgeByID(badgeToDeleteDoors) != 0)
             {
 
@@ -203,7 +203,7 @@ namespace C3_Badges_Console
             }
         }
 
-        private Badges GetBadgesByID(int badgeID)
+        private Badges GetListOfBadgesByID(int badgeID)
         {
             Dictionary<int, Badges> listOfBadges = _badgesRepo.GetBadgeList();
             foreach(KeyValuePair<int, Badges> badge in listOfBadges)
