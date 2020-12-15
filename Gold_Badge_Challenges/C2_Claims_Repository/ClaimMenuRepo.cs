@@ -11,9 +11,18 @@ namespace C2_Claims_Repository
         private Queue<ClaimMenu> _queueOfClaims = new Queue<ClaimMenu>(); 
 
         //Create
-        public void AddNewClaim(ClaimMenu newClaim)
+        public bool AddNewClaim(ClaimMenu newClaim)
         {
+            int initCount = _queueOfClaims.Count;
             _queueOfClaims.Enqueue(newClaim);
+            if(initCount < _queueOfClaims.Count)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //Read
@@ -22,14 +31,22 @@ namespace C2_Claims_Repository
             return _queueOfClaims;
         }
 
-        //Update
+        //Update - Update and Delete seem to be the same process which is to remove from Queue but delete makes more sense in this program
         
 
         //Delete (remove from Queue)
-        public void RemoveFromQueue()
+        public bool RemoveFromQueue()
         {
+            int initCount = _queueOfClaims.Count;
             _queueOfClaims.Dequeue();
-            //return _queueOfClaims;
+            if (initCount > _queueOfClaims.Count)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //Helper method by claimID

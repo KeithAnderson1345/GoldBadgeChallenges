@@ -32,20 +32,30 @@ namespace C1_Cafe_UnitTests
         }
         
         [TestMethod]
-        public void AddToMenu_ShouldGetNotNull()
+        public void AddToMenu_ShouldReturnTrue()
         {
             //Arrange
-            CafeMenu item = new CafeMenu();
-            item.MealNumber = 2;
-            CafeMenuRepo repo = new CafeMenuRepo();
+            CafeMenu item = new CafeMenu { MealNumber = 2 };
+                        
 
             //Act
-            repo.AddMenuItemToList(item);
+            bool wasAdded = _menuRepo.AddMenuItemToList(item); 
             
-            CafeMenu itemFromMenu = repo.GetMenuItemByNumber(item.MealNumber); //Verifies that the item.MealNumber was added to the menu
+            //Assert
+            Assert.IsTrue(wasAdded); //Verifies that true is returned from the AddMenuItemToList method
+        }
+
+        [TestMethod]
+        public void GetMenuItemsList_ShouldGetNotNull()
+        {
+            //Arrange
+            List<CafeMenu> verifyMenu;
+
+            //Act
+            verifyMenu = _menuRepo.GetMenuItemsList();
 
             //Assert
-            Assert.IsTrue(itemFromMenu.MealNumber == 2);
+            Assert.IsNotNull(verifyMenu); //Verifies that the verifyMenu is no longer null after GetMenuItemsList is called. 
         }
 
         [TestMethod]
@@ -58,7 +68,19 @@ namespace C1_Cafe_UnitTests
 
             //Assert
             Assert.IsTrue(deleteMenuItem); //Verifites the menu item was deleted
+        }
 
+        [TestMethod]
+        public void GetMenuItemByNumber_ShouldGetAreEqual()
+        {
+            //Arrange
+            CafeMenu getMenu = new CafeMenu();
+
+            //Act
+            getMenu = _menuRepo.GetMenuItemByNumber(_menu.MealNumber);
+
+            //Assert
+            Assert.AreEqual(getMenu.MealNumber, _menu.MealNumber);
         }
     }
 }

@@ -95,7 +95,15 @@ namespace C1_Cafe_Console
             Console.Write(" Enter the price for this meal: ");
             newMenuItem.MealPrice = decimal.Parse(Console.ReadLine());
 
-            _menuItemsRepo.AddMenuItemToList(newMenuItem);
+            bool wasAdded = _menuItemsRepo.AddMenuItemToList(newMenuItem);
+            if (wasAdded)
+            {
+                Console.WriteLine("\n New menu item has been added.");
+            }
+            else
+            {
+                Console.WriteLine("\n Oops... Menu item could not be added.");
+            }
         }
 
         private void DeleteMealFromMenu()

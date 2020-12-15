@@ -11,9 +11,18 @@ namespace C3_Badges_Repository
         private Dictionary<int, Badges> _dictionaryOfBadges = new Dictionary<int, Badges>();
 
         //Create
-        public void AddBadgeToDictionary(Badges badges)
+        public bool AddBadgeToDictionary(Badges badges)
         {
+            int initCount = _dictionaryOfBadges.Count;
             _dictionaryOfBadges.Add(badges.BadgeID, badges);
+            if (initCount < _dictionaryOfBadges.Count)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //Read

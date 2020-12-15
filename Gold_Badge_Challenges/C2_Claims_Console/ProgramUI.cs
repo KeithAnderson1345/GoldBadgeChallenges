@@ -85,8 +85,18 @@ namespace C2_Claims_Console
             string input = Console.ReadLine();
             if (input == "y")
             {
-                _queueOfClaimsRepo.RemoveFromQueue(); 
+                bool wasRemoved = _queueOfClaimsRepo.RemoveFromQueue(); 
+                if (wasRemoved)
+                {
+                    Console.WriteLine("\n This claim has been removed from the queue.");
+                }
+                else
+                {
+                    Console.WriteLine("\n This claim has not been removed from the queue.");
+                }
             }
+            Console.WriteLine("\n Press any key to continue... ");
+            Console.ReadKey();
             Console.Clear();
         }
 
@@ -149,7 +159,15 @@ namespace C2_Claims_Console
                 Console.WriteLine(" This claim is not valid");
             }
 
-            _queueOfClaimsRepo.AddNewClaim(newClaim);
+            bool wasAdded = _queueOfClaimsRepo.AddNewClaim(newClaim);
+            if (wasAdded)
+            {
+                Console.WriteLine("\n The new claim has been added to the queue.");
+            }
+            else
+            {
+                Console.WriteLine("\n This new claim could not be added.");
+            }
 
             Console.WriteLine("\n Press any key to continue... ");
             Console.ReadKey();

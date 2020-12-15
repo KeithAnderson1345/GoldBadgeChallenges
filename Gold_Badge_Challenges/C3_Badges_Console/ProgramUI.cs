@@ -69,7 +69,7 @@ namespace C3_Badges_Console
         {
             Badges newBadge = new Badges();
             Console.Clear();
-            Console.Write("\n Enter a new badge ID: ");
+            Console.Write("\n Enter a new badge ID (use numbers 0 - 1 only): ");
             newBadge.BadgeID = int.Parse(Console.ReadLine());
             Console.WriteLine("\n Enter door(s) accessibility (hit 'enter' after every door entry and type 'end' when complete): ");
             bool input = true;
@@ -86,7 +86,15 @@ namespace C3_Badges_Console
                     newBadge.DoorNames.Add(door);
                 }
             }
-            _badgesRepo.AddBadgeToDictionary(newBadge);
+            bool wasAdded = _badgesRepo.AddBadgeToDictionary(newBadge);
+            if (wasAdded)
+            {
+                Console.WriteLine("\n The new badge has been created.");
+            }
+            else
+            {
+                Console.WriteLine("\n Could not add new badge.");
+            }
         }
 
         private void AddDoorsForExistingBadge()

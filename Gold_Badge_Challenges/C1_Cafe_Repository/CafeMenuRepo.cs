@@ -11,9 +11,20 @@ namespace C1_Cafe_Repository
         private List<CafeMenu> _listOfMenuItems = new List<CafeMenu>();
 
         //Create
-        public void AddMenuItemToList(CafeMenu item)
+        public bool AddMenuItemToList(CafeMenu item)
         {
+            int initCount = _listOfMenuItems.Count;
             _listOfMenuItems.Add(item);
+            int newCount = _listOfMenuItems.Count;
+            if (initCount < newCount)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         //Read

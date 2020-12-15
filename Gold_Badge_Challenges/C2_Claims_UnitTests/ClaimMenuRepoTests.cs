@@ -10,6 +10,7 @@ namespace C2_Claims_UnitTests
     {
         private ClaimMenuRepo _queueRepoTests;
         private Queue<ClaimMenu> seeClaim;
+        private ClaimMenu items;
 
         [TestInitialize]
         public void Arrange()
@@ -17,15 +18,15 @@ namespace C2_Claims_UnitTests
             DateTime accident = new DateTime(2020, 12, 05);
 
             _queueRepoTests = new ClaimMenuRepo();
-            ClaimMenu Claim = new ClaimMenu("KA1345", ClaimType.Auto, "Wreck on 65", 23450.00m, accident, DateTime.Now, true);
+            ClaimMenu claim = new ClaimMenu("KA1345", ClaimType.Auto, "Wreck on 65", 23450.00m, accident, DateTime.Now, true);
             
-            _queueRepoTests.AddNewClaim(Claim);
+            _queueRepoTests.AddNewClaim(claim);
             seeClaim = new Queue<ClaimMenu>();
             
         }
 
         [TestMethod]
-        public void AddNewClaimToQueue_ShouldGetNotNull()
+        public void AddNewClaimToQueue_ShouldReturnTrue()
         {
             //Arrange
             DateTime theft = new DateTime(2020, 12, 08);
@@ -34,12 +35,10 @@ namespace C2_Claims_UnitTests
             
 
             //Act            
-            _queueRepoTests.AddNewClaim(claim); //This adds a 2nd claim to the queue
-            ClaimMenu getClaimID = _queueRepoTests.GetClaimListByID("BC1200"); //This tests the Helper method in the repository as well
+            bool wasAdded = _queueRepoTests.AddNewClaim(claim); //This adds a 2nd claim to the queue            
 
-            //Assert
-            
-            Assert.IsNotNull(getClaimID); //Verifies that the "BC1200" claim was added to the queue and could be retrieved by the GetClaimListByID method
+            //Assert            
+            Assert.IsTrue(wasAdded); //Verifies that the "BC1200" claim was added to the queue
 
         }
 
@@ -59,21 +58,29 @@ namespace C2_Claims_UnitTests
         }
 
         [TestMethod]
-        public void RemoveFromQueue_()
+        public void RemoveFromQueue_ShouldReturnTrue()
         {
-            //Arrange
-            DateTime theft = new DateTime(2020, 12, 08);
-            ClaimMenu claim = new ClaimMenu("BC1200", ClaimType.Theft, "Stolen grill", 234.00m, theft, DateTime.Now, true);
-            ClaimMenu testClaim = new ClaimMenu();
+            //Arrange - Done in initialize section                    
+
+            //Act            
+            bool wasRemoved = _queueRepoTests.RemoveFromQueue(); //Removes the initialized claim "KA1345" from the queue (first in, first out)
             
 
+            //Assert
+            Assert.IsTrue(wasRemoved); //Verifies that a claim was removed from the queue
+        }
+
+        [TestMethod]
+        public void GetClaimListByID_ShouldGetAreEqual()
+        {
+            //Arrange
+            string claimID = "KA1345";
+
             //Act
-            _queueRepoTests.AddNewClaim(claim); //Adds new claim "BC1200" to the queue. There should now be 2 total claims
-            _queueRepoTests.RemoveFromQueue(); //Removes the initialized claim "KA1345" from the queue (first in, first out)
-            testClaim = _queueRepoTests.GetClaimListByID("BC1200");
+            items = _queueRepoTests.GetClaimListByID(claimID);
 
             //Assert
-            Assert.IsTrue(testClaim.ClaimID == "BC1200"); //Verifies that "BC1200" was still in the queue after the removal
+            Assert.AreEqual(claimID, items.ClaimID); //Verifies the claim ID's match
         }
     }
 }

@@ -16,6 +16,8 @@ namespace C3_Badges_UnitTests
         [TestInitialize]
         public void Setup()
         {
+            _badgesRepo = new BadgesRepo();
+
             List<string> badges = new List<string>
             {
                 "A1",
@@ -28,29 +30,27 @@ namespace C3_Badges_UnitTests
 
             _badges = new Badges(badgeID, badges);
             
-            _badgeDictionary.Add(_badges.BadgeID, _badges);                     
+            _badgesRepo.AddBadgeToDictionary(_badges);  //Seeds the dictionary for testing                   
         }
         
         
         [TestMethod]
-        public void AddBadgeToDictionary_ShouldBeEqual()
+        public void AddBadgeToDictionary_ShouldReturnTrue()
         {
             //Arrange            
             _badgesRepo = new BadgesRepo();
 
             //Act
-            _badgesRepo.AddBadgeToDictionary(_badges); //Adds _badges data to dictionary           
-            var badge = _badgesRepo.GetBadgeByID(_badges.BadgeID); //sets Badge equal to ID added
+            bool wasAdded = _badgesRepo.AddBadgeToDictionary(_badges); //Adds _badges data (from initialize section) to the dictionary           
 
             //Assert
-            Assert.AreEqual(_badges.BadgeID, badge); //Verifies the new badge data was added
+            Assert.IsTrue(wasAdded); //Verifies the new badge data was added
         }
 
         [TestMethod]
         public void AddDoorToExistingBadge_ShouldReturnTrue()
         {
-            //Arrange
-            _badgesRepo = new BadgesRepo();
+            //Arrange            
             List<string> newDoors = new List<string>
             {
                 "B3",
@@ -58,9 +58,8 @@ namespace C3_Badges_UnitTests
                 "B5"
             };
 
-            //Act
-            _badgesRepo.AddBadgeToDictionary(_badges); //Adds the _badges data to the dictionary
-            bool added = _badgesRepo.AddDoorToExistingBadge(_badges.BadgeID, newDoors, _badges); //Adds new doors to the existing badge
+            //Act            
+            bool added = _badgesRepo.AddDoorToExistingBadge(_badges.BadgeID, newDoors, _badges); //Adds new doors to the existing badge from initialize section
 
             //Assert
             Assert.IsTrue(added); //Verifies doors were added
@@ -69,36 +68,44 @@ namespace C3_Badges_UnitTests
         [TestMethod]
         public void RemoveDoorFromExistingBadge_ShouldReturnTrue()
         {
-            //Arrange
-            _badgesRepo = new BadgesRepo();
+            //Arrange            
             List<string> doorsToRemove = new List<string>
             {
                 "B1",
                 "B2"
             };
 
-            //Act
-            _badgesRepo.AddBadgeToDictionary(_badges); //Adds the _badges from initialize test to dictionary with existing doors. 
-            bool deleted = _badgesRepo.DeleteDoorFromExistingBadge(_badges.BadgeID, doorsToRemove, _badges); //Deletes B1,B2 from the list established in the initialize test method data
+            //Act            
+            bool deleted = _badgesRepo.DeleteDoorFromExistingBadge(_badges.BadgeID, doorsToRemove, _badges); //Deletes B1,B2 from the list established in the 
+                                                                                                             //initialize test method data
 
             //Assert
             Assert.IsTrue(deleted);
         }
 
         [TestMethod]
-        public void ReadDictionaryList_ShouldBeEqual()
+        public void ReadDictionaryList_ShouldBeTrue()
         {
-            //Arrange
-            _badgesRepo = new BadgesRepo();
+            //Arrange - Done in initialize section           
 
-            //Act
-            _badgesRepo.AddBadgeToDictionary(_badges); //Adds the _badges object created in the initialize method
+            //Act            
             var list = _badgesRepo.GetBadgeList(); //returns the badges in the dictionary
 
+            //Assert
+            Assert.IsTrue(list.Count == 1); //Verifies that the badge from the initialize test method was added and the count is  
+                                                                 //equal to (1) since only one badge was initialized
+        }
+
+        [TestMethod]
+        public void GetBadgeByID_ShouldBeEqual()
+        {
+            //Arrange - Done in initialize section
+
+            //Act
+            int badgeID = _badgesRepo.GetBadgeByID(_badges.BadgeID);
 
             //Assert
-            Assert.AreEqual(list.Count, _badgeDictionary.Count); //Verifies that the badge from the initialize test method was added and the count is equal to the dictionary count 
-                                                                 //that was created in the initialize test method
+            Assert.AreEqual(12345, badgeID); //Verifies the initialized badge number 12345 was returned from the GetBadgeByID method
         }
     }
 }
