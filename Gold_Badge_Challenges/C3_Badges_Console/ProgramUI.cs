@@ -10,7 +10,7 @@ namespace C3_Badges_Console
     class ProgramUI
     {
         private BadgesRepo _badgesRepo = new BadgesRepo();
-        
+
 
         public void Run()
         {
@@ -20,7 +20,7 @@ namespace C3_Badges_Console
         private void Menu()
         {
             bool loopMenu = true;
-            while(loopMenu)
+            while (loopMenu)
             {
                 Console.WriteLine("\n Choose from the following list:\n" +
                     " (1) Create a new badge\n" +
@@ -69,21 +69,51 @@ namespace C3_Badges_Console
         {
             Badges newBadge = new Badges();
             Console.Clear();
-            Console.Write("\n Enter a new badge ID (use numbers 0 - 1 only): ");
-            newBadge.BadgeID = int.Parse(Console.ReadLine());
+
+            bool alreadyExists = true;
+            while (alreadyExists)
+            {
+                Console.Write("\n Enter a new badge ID (use numbers 0 - 9 only): ");
+                int checkNum = int.Parse(Console.ReadLine());
+                var existingBadge = GetListOfBadgesByID(checkNum);
+                if (existingBadge == null)
+                {
+                    newBadge.BadgeID = checkNum;
+                    alreadyExists = false;
+                }
+                else
+                {
+                    Console.WriteLine("\n This badge ID already exists. Please choose another number.");
+                    Console.WriteLine("\n Press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }
+
+
+
             Console.WriteLine("\n Enter door(s) accessibility (hit 'enter' after every door entry and type 'end' when complete): ");
             bool input = true;
+            string checkDoor = null;
             while (input)
             {
                 Console.Write(" ");
                 string door = Console.ReadLine();
-                if (door == "end")
+                if (checkDoor != door)
                 {
-                    input = false;
+                    if (door == "end")
+                    {
+                        input = false;
+                    }
+                    else
+                    {
+                        newBadge.DoorNames.Add(door);
+                        checkDoor = door;
+                    }
                 }
                 else
                 {
-                    newBadge.DoorNames.Add(door);
+                    Console.WriteLine(" That door has already been entered. Please choose another door.");                    
                 }
             }
             bool wasAdded = _badgesRepo.AddBadgeToDictionary(newBadge);
@@ -121,7 +151,20 @@ namespace C3_Badges_Console
                     }
                     else
                     {
-                        addDoors.Add(door);
+                        bool isDuplicate = false;
+                        foreach (string doorCheck in badgeToAdd.DoorNames)
+                        {                            
+                            if (doorCheck == door)
+                            {
+                                Console.WriteLine(" This badge has access to this door already.");
+                                Console.WriteLine(" Please choose another door to add.");
+                                isDuplicate = true;
+                            }                            
+                        }
+                        if (isDuplicate == false)
+                        {
+                            addDoors.Add(door);
+                        }
                     }
                 }
                 bool wasAdded = _badgesRepo.AddDoorToExistingBadge(badgeToAddDoors, addDoors, badgeToAdd);
@@ -194,12 +237,12 @@ namespace C3_Badges_Console
             foreach (KeyValuePair<int, Badges> badge in listOfBadges)
             {
                 Console.Write(" {0,-15}", badge.Key);
-               int count = badge.Value.DoorNames.Count;                
+                int count = badge.Value.DoorNames.Count;
                 foreach (string doors in badge.Value.DoorNames)
                 {
                     if (count > 1)
                     {
-                        Console.Write(doors+",");                        
+                        Console.Write(doors + ",");
                         count--;
                     }
                     else
@@ -214,14 +257,14 @@ namespace C3_Badges_Console
         private Badges GetListOfBadgesByID(int badgeID)
         {
             Dictionary<int, Badges> listOfBadges = _badgesRepo.GetBadgeList();
-            foreach(KeyValuePair<int, Badges> badge in listOfBadges)
+            foreach (KeyValuePair<int, Badges> badge in listOfBadges)
             {
                 if (badge.Key == badgeID)
                 {
                     return badge.Value;
-                }                
+                }
             }
             return null;
         }
-    }   
+    }
 }

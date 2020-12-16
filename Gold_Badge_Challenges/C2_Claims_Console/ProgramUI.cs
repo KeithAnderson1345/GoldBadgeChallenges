@@ -61,8 +61,8 @@ namespace C2_Claims_Console
             Console.WriteLine(" {0,-15}{1,-10}{2,-30}{3,-19}{4,-20}{5,-20}{6,-10}", "Claim ID", "Type", "Description", "Amount", "Date of accident", "Date of claim", "Is valid");
             foreach (ClaimMenu claim in queueOfClaims)
             {
-                Console.WriteLine(" {0,-15}{1,-10}{2,-30}{3,-1}{4,-18:F2}{5,-20}{6,-20}{7,-10}", claim.ClaimID, claim.Type, claim.Description,
-                    "$",claim.ClaimAmount, claim.DateOfIncident.ToString("d"), claim.DateOfClaim.ToString("d"), claim.IsValid);
+                Console.WriteLine(" {0,-15}{1,-10}{2,-30}{3,-19:C2}{4,-20}{5,-20}{6,-10}", claim.ClaimID, claim.Type, claim.Description,
+                    claim.ClaimAmount, claim.DateOfIncident.ToString("d"), claim.DateOfClaim.ToString("d"), claim.IsValid);
             }
             Console.Write("\n Press any key to continue... ");
             Console.ReadKey();
@@ -102,12 +102,28 @@ namespace C2_Claims_Console
 
         private void CreateNewClaim()
         {
-            ClaimMenu newClaim = new ClaimMenu();
+            ClaimMenu newClaim = new ClaimMenu();            
 
             Console.Clear();
 
-            Console.Write("\n Enter the claim ID: ");
-            newClaim.ClaimID = Console.ReadLine();
+            bool alreadyExists = false;
+            while (!alreadyExists)
+            {
+                Console.Write("\n Enter the claim ID: ");
+                string checkClaimID = Console.ReadLine();
+                alreadyExists = CheckIfClaimIDExists(checkClaimID);
+                if (alreadyExists == true)
+                {
+                    newClaim.ClaimID = checkClaimID;
+                }
+                else
+                {
+                    Console.WriteLine("\n This claim ID already exists. Please choose another claim ID.");
+                    Console.WriteLine("\n Press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }           
 
             bool validData = true;
             while (validData)
@@ -216,6 +232,19 @@ namespace C2_Claims_Console
         {
             TimeSpan days = dateOfClaim - dateOfAccident;
             if (days.TotalDays <= 30)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool CheckIfClaimIDExists(string checkString)
+        {
+            ClaimMenu checkClaimID = _queueOfClaimsRepo.GetClaimListByID(checkString);
+            if (checkClaimID == null)
             {
                 return true;
             }
